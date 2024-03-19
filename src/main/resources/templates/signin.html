@@ -1,50 +1,35 @@
-<!--  Inspiration : https://getbootstrap.com/docs/4.0/examples/sign-in/ -->
-
-<!doctype html>
+<!DOCTYPE html>
+<html xml:th="http://www.thymeleaf.org"></html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
-  <title>Signin Template for Bootstrap</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
-
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
-
-  <!-- Bootstrap core CSS -->
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="/css/style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>SignIn</title>
+  <link href="/images/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<body>
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>SignIn</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="">
+        <form>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+            <input type="text" name="username" placeholder="Username" required />
+          </div>
 
-<body class="text-center">
-<div id="bienvenue">
-  <h1 id="site">Bienvenue sur le site de DarkMerguez</h1>
-</div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+            <input type="password" name="password" placeholder="Password" required />
+          </div>
 
-<form class="form-signin">
-  <img class="mb-4" src="/Images/merguezdance.gif" alt="" width="160" height="160" id="logo">
-  <h1 class="h3 mb-3 font-weight-normal textenoir">Connexion</h1>
-  <label for="inputEmail" class="sr-only">Adresse mail</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
-  <label for="inputPassword" class="sr-only">Mot de passe</label>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Se souvenir de moi
-    </label>
+
+          <input class="button" type="submit" value="Connect" />
+        </form>
+      </div>
+    </div>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
-  <p class="mt-5 mb-3 text-muted"><b>&copy; 2023</b></p>
-</form>
+</div>
 </body>
-
 </html>
