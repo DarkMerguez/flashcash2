@@ -1,11 +1,20 @@
 package com.example.flashcash.service.form;
 
 public class SignUpForm {
+    private String username;
     private String firstname;
     private String lastname;
     private String email;
     private String password;
     private String confirmPassword;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getFirstname() {
         return firstname;
