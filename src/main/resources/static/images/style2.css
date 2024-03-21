@@ -149,3 +149,13 @@ a {
 button a {
     color: #306dfd;
 }
+
+#logout {
+text-decoration: none;
+}
+
+#logout:hover {
+color: black;
+font-weight: bolder;
+text-decoration: underline;
+}
