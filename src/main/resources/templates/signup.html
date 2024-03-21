@@ -1,5 +1,5 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,23 +17,23 @@
             <div class="">
                 <form th:action="@{/signup}" th:object="${signUpForm}" method="POST">
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                        <input type="email" field="*{email}" name="email" placeholder="Email" required />
+                        <input type="email" th:field="*{email}" name="email" placeholder="Email" required />
                     </div>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-                        <input type="password" field="*{password}" name="password" placeholder="Password" required />
+                        <input type="password" th:field="*{password}" name="password" placeholder="Password" required />
                     </div>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-                        <input type="password" field="*{confirmPassword}" name="password" placeholder="Re-type Password" required />
+                        <input type="password" th:field="*{confirmPassword}" name="confirmPassword" placeholder="Re-type Password" required />
                     </div>
                     <div class="row clearfix">
                         <div class="col_half">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" field="*{firstName}" name="name" placeholder="First Name" />
+                                <input type="text" th:field="*{firstName}" name="firstName" placeholder="First Name" />
                             </div>
                         </div>
                         <div class="col_half">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" field="*{lastName}" name="name" placeholder="Last Name" required />
+                                <input type="text" th:field="*{lastName}" name="lastName" placeholder="Last Name" required />
                             </div>
                         </div>
                     </div>

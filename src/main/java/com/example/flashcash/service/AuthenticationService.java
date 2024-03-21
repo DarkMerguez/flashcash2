@@ -23,7 +23,7 @@ public class AuthenticationService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Optional<User> user = userRepository
-                .findUserByMail(s);
+                .findUserByEmail(s);
 
         if (user.isPresent()) {
 
