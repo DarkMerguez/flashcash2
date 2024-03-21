@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html xml:th="http://www.thymeleaf.org"></html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,42 +15,42 @@
         </div>
         <div class="row clearfix">
             <div class="">
-                <form>
+                <form th:action="@{/signup}" th:object="${signUpForm}" method="POST">
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                        <input type="email" name="email" placeholder="Email" required />
+                        <input type="email" field="*{email}" name="email" placeholder="Email" required />
                     </div>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-                        <input type="password" name="password" placeholder="Password" required />
+                        <input type="password" field="*{password}" name="password" placeholder="Password" required />
                     </div>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-                        <input type="password" name="password" placeholder="Re-type Password" required />
+                        <input type="password" field="*{confirmPassword}" name="password" placeholder="Re-type Password" required />
                     </div>
                     <div class="row clearfix">
                         <div class="col_half">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="name" placeholder="First Name" />
+                                <input type="text" field="*{firstName}" name="name" placeholder="First Name" />
                             </div>
                         </div>
                         <div class="col_half">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="name" placeholder="Last Name" required />
+                                <input type="text" field="*{lastName}" name="name" placeholder="Last Name" required />
                             </div>
                         </div>
                     </div>
-                    <div class="input_field radio_option">
-                        <input type="radio" name="radiogroup1" id="rd1">
-                        <label for="rd1">Male</label>
-                        <input type="radio" name="radiogroup1" id="rd2">
-                        <label for="rd2">Female</label>
-                    </div>
-                    <div class="input_field select_option">
-                        <select>
-                            <option>Select a country</option>
-                            <option>France</option>
-                            <option>La réponse D</option>
-                        </select>
-                        <div class="select_arrow"></div>
-                    </div>
+<!--                     <br class="input_field radio_option">-->
+<!--                        <input type="radio" name="radiogroup1" id="rd1">-->
+<!--                        <label for="rd1">Male</label>-->
+<!--                        <input type="radio" name="radiogroup1" id="rd2">-->
+<!--                        <label for="rd2">Female</label>-->
+<!--                    </div>-->
+<!--                    <div class="input_field select_option">-->
+<!--                        <select>-->
+<!--                            <option>Select a country</option>-->
+<!--                            <option>France</option>-->
+<!--                            <option>La réponse D</option>-->
+<!--                        </select>-->
+<!--                        <div class="select_arrow"></div>-->
+<!--                    </div>-->
                     <div class="input_field checkbox_option">
                         <input type="checkbox" id="cb1">
                         <label for="cb1">I agree with terms and conditions</label>
@@ -60,6 +60,8 @@
                         <label for="cb2">I want to receive the newsletter</label>
                     </div>
                     <input class="button" type="submit" value="Register" />
+
+                    <h3>Already have an account ? <a href="signin">Sign in</a> </h3>
                 </form>
             </div>
         </div>

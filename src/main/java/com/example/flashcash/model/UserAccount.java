@@ -25,4 +25,7 @@ public class UserAccount {
         this.amount -= amount;
         return this;
     }
+
+    public void setAmount(double v) {
+    }
 }

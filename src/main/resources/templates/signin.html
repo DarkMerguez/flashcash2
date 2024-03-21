@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html xml:th="http://www.thymeleaf.org"></html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +15,7 @@
     </div>
     <div class="row clearfix">
       <div class="">
-        <form>
+        <form th:action="@{/signin}" method="post">
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input type="email" name="email" placeholder="Email" required />
           </div>
@@ -25,6 +25,8 @@
           </div>
 
           <input class="button" type="submit" value="Connect" />
+
+          <h3>No account yet ? <a href="signup">Sign up</a></h3>
         </form>
       </div>
     </div>
