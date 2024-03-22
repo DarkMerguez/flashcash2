@@ -27,6 +27,10 @@ public class UserController {
     public ModelAndView home(Model model) {
         return new ModelAndView("index");
     }
+    @GetMapping("/addIBAN")
+    public ModelAndView addIBAN(Model model) {
+        return new ModelAndView("addIBAN");
+    }
 
     @PostMapping("/signup")
     public ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form ) {

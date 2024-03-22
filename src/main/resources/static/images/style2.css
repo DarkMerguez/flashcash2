@@ -107,6 +107,7 @@ b {
     padding-bottom: 0.66rem;
 }
 
+
 hr {
     color: #979593;
     box-shadow: 0.4px 0.4px 0.4px 0px #979593;
@@ -150,11 +151,13 @@ button a {
     color: #306dfd;
 }
 
-#logout {
+#logout,
+#linkHome {
 text-decoration: none;
 }
 
-#logout:hover {
+#logout:hover,
+#linkHome:hover{
 color: black;
 font-weight: bolder;
 text-decoration: underline;
