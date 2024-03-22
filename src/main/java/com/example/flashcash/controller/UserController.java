@@ -1,10 +1,13 @@
 package com.example.flashcash.controller;
 
-import ch.qos.logback.core.model.Model;
+
+import com.example.flashcash.model.User;
+import com.example.flashcash.service.SessionService;
 import com.example.flashcash.service.UserService;
 import com.example.flashcash.service.form.AddIBANForm;
 import com.example.flashcash.service.form.SignUpForm;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,16 +19,22 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
     private final UserService userService;
+    private final SessionService sessionService;
 
-    public UserController(UserService userService) { this.userService = userService; }
+    public UserController(UserService userService, SessionService sessionService) {
+        this.userService = userService;
+        this.sessionService = sessionService;
+    }
 
     @GetMapping("/signup")
     public ModelAndView showRegisterForm() {
         return new ModelAndView("signup", "signUpForm", new SignUpForm());
     }
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public ModelAndView home(Model model) {
+        User user = sessionService.sessionUser();
+        model.addAttribute("user", user);
         return new ModelAndView("index");
     }
     @GetMapping("/addIBAN")

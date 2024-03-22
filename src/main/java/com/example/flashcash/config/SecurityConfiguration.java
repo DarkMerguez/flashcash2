@@ -23,7 +23,7 @@ public class SecurityConfiguration {
                 )
                 .formLogin((form) -> form
                         .loginPage("/signin")
-                        .permitAll().usernameParameter("email").defaultSuccessUrl("/index",true)
+                        .permitAll().usernameParameter("email").defaultSuccessUrl("/",true)
                 )
                 .logout((logout) -> logout.permitAll());
         return http.build();
