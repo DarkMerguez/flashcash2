@@ -4,6 +4,7 @@ import com.example.flashcash.model.User;
 import com.example.flashcash.model.UserAccount;
 import com.example.flashcash.repository.AccountRepository;
 import com.example.flashcash.repository.UserRepository;
+import com.example.flashcash.service.form.AddIBANForm;
 import com.example.flashcash.service.form.SignUpForm;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,11 @@ public class UserService {
         user.setEmail(form.getEmail());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         return userRepository.save(user);
+    }
+
+    public UserAccount ibansubmit(AddIBANForm form) {
+            UserAccount account = sessionService.sessionUser().getAccount();
+            account.setIban(form.getIban());
+            return accountRepository.save(account);
     }
 }

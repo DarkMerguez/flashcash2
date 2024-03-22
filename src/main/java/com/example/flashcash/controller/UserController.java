@@ -2,6 +2,7 @@ package com.example.flashcash.controller;
 
 import ch.qos.logback.core.model.Model;
 import com.example.flashcash.service.UserService;
+import com.example.flashcash.service.form.AddIBANForm;
 import com.example.flashcash.service.form.SignUpForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +29,14 @@ public class UserController {
         return new ModelAndView("index");
     }
     @GetMapping("/addIBAN")
-    public ModelAndView addIBAN(Model model) {
-        return new ModelAndView("addIBAN");
+    public ModelAndView addIBAN() {
+        return new ModelAndView("addIBAN","addIBANForm", new AddIBANForm());
+    }
+
+    @PostMapping("/addIBAN")
+    public ModelAndView processRequest(@ModelAttribute("addIBANForm") AddIBANForm form ) {
+        userService.ibansubmit(form);
+        return new ModelAndView("index");
     }
 
     @PostMapping("/signup")
