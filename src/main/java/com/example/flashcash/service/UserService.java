@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+    private final SessionService sessionService;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final AccountRepository accountRepository;
 
-    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository, AccountRepository accountRepository) {
+        public UserService(SessionService sessionService, PasswordEncoder passwordEncoder, UserRepository userRepository, AccountRepository accountRepository) {
+        this.sessionService = sessionService;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.accountRepository = accountRepository;

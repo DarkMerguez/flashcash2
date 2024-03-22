@@ -20,12 +20,34 @@ public class UserAccount {
         return this;
     }
 
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public String getIban() {
+        return iban;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
+
     public UserAccount minus(double amount) {
 
         this.amount -= amount;
         return this;
     }
 
-    public void setAmount(double v) {
-    }
 }
