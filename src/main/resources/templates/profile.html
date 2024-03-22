@@ -15,7 +15,7 @@
         <div class="row col-lg-12 text-center">
             <div class="row col-lg-2 text-center">
                 <a href="/"><img src="/images/LogoDarkMerguez.PNG" alt="Mon logo"
-                     style="max-height: 5rem; width: auto; max-width: 100%;"></a>
+                                 style="max-height: 5rem; width: auto; max-width: 100%;"></a>
             </div>
             <div class="row col-lg-6 text-center"></div>
             <div class="row col-lg-4 text-center nav2">
@@ -33,28 +33,7 @@
     </header>
 
 
-    <div class="row col-lg-12 text-center" id="addIBAN">
-        <div class="row col-md-3 text-center boites"></div>
-        <div class="row col-md-6 text-center boites">
-            <div class="card mx-auto" id="boxIBANborder">
-                <div>
-                    <h3 id="titleIBAN">Add an IBAN</h3>
-                </div>
-                <form th:action="@{/addIBAN}" th:object="${addIBANForm}" method="POST">
-                <div class="allPadding form-label">
-                    <input type="text" th:field="*{iban}" class="form-control" placeholder="IBAN" id="champIBAN">
-                </div>
-                <div class="understart">
-                    <button type="submit" class="btn-primary" id="btnIBAN">Add iban</button>
-                </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-
-    <br></br>
-
+    <h1>My profile</h1>
 
     <hr>
     </hr>
@@ -62,6 +41,7 @@
     <div class="row col-lg-12 text-center">
         <br></br>
     </div>
+
 
     <footer>
         <div class="row col-lg-12 text-center" id="bandeauBas">

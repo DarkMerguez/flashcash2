@@ -42,6 +42,16 @@ public class UserController {
         return new ModelAndView("addIBAN","addIBANForm", new AddIBANForm());
     }
 
+    @GetMapping("/profile")
+    public ModelAndView profile() {
+        return new ModelAndView("profile");
+    }
+
+    @GetMapping("/addCash")
+    public ModelAndView addCash() {
+        return new ModelAndView("addCash");
+    }
+
     @PostMapping("/addIBAN")
     public ModelAndView processRequest(@ModelAttribute("addIBANForm") AddIBANForm form ) {
         userService.ibansubmit(form);
