@@ -1,13 +1,13 @@
 package com.example.flashcash.controller;
 
 
+import com.example.flashcash.model.Link;
+import com.example.flashcash.model.Transfer;
 import com.example.flashcash.model.User;
+import com.example.flashcash.repository.LinkRepository;
 import com.example.flashcash.service.SessionService;
 import com.example.flashcash.service.UserService;
-import com.example.flashcash.service.form.AddCashForm;
-import com.example.flashcash.service.form.AddIBANForm;
-import com.example.flashcash.service.form.LinksForm;
-import com.example.flashcash.service.form.SignUpForm;
+import com.example.flashcash.service.form.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 
 
 @Controller
@@ -22,10 +23,12 @@ public class UserController {
 
     private final UserService userService;
     private final SessionService sessionService;
+    private final LinkRepository linkRepository;
 
-    public UserController(UserService userService, SessionService sessionService) {
+    public UserController(UserService userService, SessionService sessionService, LinkRepository linkRepository) {
         this.userService = userService;
         this.sessionService = sessionService;
+        this.linkRepository = linkRepository;
     }
 
     @GetMapping("/signup")
@@ -45,9 +48,13 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public ModelAndView profile() {
+    public ModelAndView profile(Model model) {
+        User user = sessionService.sessionUser();
+        model.addAttribute("user", user);
         return new ModelAndView("profile");
     }
+
+
 
     @GetMapping("/addCash")
     public ModelAndView addCash() {
@@ -77,17 +84,26 @@ public class UserController {
     }
 
     @GetMapping("/transfer")
-    public ModelAndView transfer() {
-        return new ModelAndView("transfer","linksForm", new LinksForm());
+    public ModelAndView transfer(Model model, Model model2) {
+        User user = sessionService.sessionUser();
+        model.addAttribute("user", user);
+        List<Link> userLinks = linkRepository.findLinksByUser1Email(user.getEmail());
+        model2.addAttribute("userLinks", userLinks);
+        return new ModelAndView("transfer");
     }
 
     @PostMapping("/transfer")
-    public ModelAndView processRequest(@ModelAttribute("linksForm") LinksForm form, Model model ) {
+    public ModelAndView processRequest(@ModelAttribute("linksForm") LinksForm form, Model model, @ModelAttribute("transferForm") TransferForm form2, Model model2) {
         userService.userLinks(form);
+        userService.transfer(form2);
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
+        Transfer transfer = new Transfer();
+        model2.addAttribute("transfer", transfer);
         return new ModelAndView("index");
     }
+
+
 
     @GetMapping("/contact")
     public ModelAndView showContact() {

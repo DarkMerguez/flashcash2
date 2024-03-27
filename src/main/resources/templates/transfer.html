@@ -60,10 +60,11 @@
                 <div>
                     <h3 id="titleIBAN">Chose an existing friend to send cash to</h3>
                 </div>
-                <form  method="POST">
+                <form th:action="@{/transfer}" th:object="${transferForm}"  method="POST">
                     <div class="allPadding form-label">
-                        <select>
-                            <option value="">Select a friend</option>
+                        <select name="contactEmail">
+                            <option value="default">Select a friend</option>
+                            <option th:each="email : ${linksEmail}" th:value="${email}" th:utext="${email}">Select a friend</option>
                         </select>
                     </div>
                     <div class="form-group">

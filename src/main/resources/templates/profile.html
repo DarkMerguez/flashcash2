@@ -18,7 +18,7 @@
                                  style="max-height: 5rem; width: auto; max-width: 100%;"></a>
             </div>
             <div class="row col-lg-6 text-center"></div>
-            <div class="row col-lg-4 text-center nav2">
+            <div class="row col-lg-4 text-center nav">
                 <ul>
                     <li><a href="/" id="linkHome">Home</a></li>
                     <li><a href="transfer" id="linkTransfer">Transfer</a></li>
@@ -32,8 +32,90 @@
         </div>
     </header>
 
+    <div class="row col-lg-12 text-center">
+        <br></br>
+        <h1>My Profile</h1>
+        <br></br>
+    </div>
 
-    <h1>My profile</h1>
+    <div class="row col-lg-12 text-center">
+        <div class="row col-12 col-sm-6 col-md-4 text-center boites">
+            <div class="card mx-auto boxborder">
+                <div class="titleCard">
+                    <h3>Add cash to Flash Cash</h3>
+                </div>
+                <div class="paddingtop">
+                    <ul class="ulCard">
+                        <li>Add cash with your credit card</li>
+                        <li>Free</li>
+                        <li>Instant deposit</li>
+                        <li>Fully secured</li>
+                    </ul>
+                </div>
+                <div class="understart">
+                    <button type="submit" class="cardButton"><a href="addCash">Start</a></button>
+                </div>
+            </div>
+        </div>
+        <div class="row col-12 col-sm-6 col-md-4 text-center boites">
+            <div class="card mx-auto boxborder">
+                <div class="titleCard">
+                    <h3>Transfer to your bank</h3>
+                </div>
+                <div class="paddingtop">
+                    <ul class="ulCard">
+                        <li>Instant transfer</li>
+                        <li>Free</li>
+                        <li>Worldwide</li>
+                        <li>Fully secured</li>
+                    </ul>
+                </div>
+                <div class="understart">
+                    <button type="submit" class="cardButton">Start</button>
+                </div>
+            </div>
+        </div>
+        <div class="row col-12 col-sm-6 col-md-4 text-center boites">
+            <div class="card mx-auto boxborder">
+                <div class="titleCard">
+                    <h3>Add an IBAN</h3>
+                </div>
+                <div class="paddingtop">
+                    <ul class="ulCard">
+                        <li>Add your IBAN here</li>
+                        <li>Up to 5 IBAN</li>
+                        <li>Any bank supported</li>
+                        <li>Fully secured</li>
+                    </ul>
+                </div>
+                <div class="understart">
+                    <button type="submit" class="cardButton"><a href="addIBAN">Start</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br></br>
+    <div class="row col-lg-12 text-center">
+        <h2>My account balance :</h2>
+    </div>
+
+    <div class="row col-lg-12 text-center paddingtop">
+        <div class="row col-lg-6 text-center"><b>User</b></div>
+        <div class="row col-lg-6 text-center"><b>Amount</b></div>
+    </div>
+    <hr>
+    </hr>
+    <div class="row col-lg-12 text-center paddingtop">
+        <div class="row col-lg-6 text-center variables1" th:text="${user.email}"></div>
+        <div class="row col-lg-6 text-center variables2" th:text="${user.account.amount}"></div>
+    </div>
+    <hr>
+    </hr>
+    <br></br>
+
+    <div class="row col-lg-12 text-center">
+        <h2>My last transfers :</h2>
+    </div>
 
     <hr>
     </hr>
@@ -44,7 +126,6 @@
                  style="max-height: 2rem; width: auto; max-width: 100%;">
         </div>
     </div>
-
 
     <footer>
         <div class="row col-lg-12 text-center" id="bandeauBas">
@@ -81,4 +162,5 @@
 </div>
 </body>
 
+<script src="script.js"></script>
 </html>
