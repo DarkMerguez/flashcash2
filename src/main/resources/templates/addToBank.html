@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <link href="/images/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to bank</title>
+    <link rel="stylesheet" href="/images/bootstrap.min.css">
     <link href="/images/style2.css" rel="stylesheet">
 </head>
-
-<body class="text-center">
+<body>
 
 <div class="container-fluid">
     <header>
@@ -33,54 +33,20 @@
     </header>
 
     <div class="row col-lg-12 text-center" id="addIBAN">
-        <div class="row col-md-3 text-center boites"></div>
-        <div class="row col-md-6 text-center boites">
+        <div class="row col-md-4 text-center boites"></div>
+        <div class="row col-md-4 text-center boites">
             <div class="card mx-auto" id="boxIBANborder">
-                <div>
-                    <h3 id="titleIBAN">Add a new friend</h3>
-                </div>
-                <form th:action="@{/add-friend}" th:object="${linksForm}" method="POST">
-                    <div class="allPadding form-label">
-                        <input type="text" name="email" class="form-control" placeholder="Friends's mail" id="champIBAN">
-                    </div>
-                    <div class="understart">
-                        <button type="submit" class="btn-primary" id="btnIBAN">Add friend</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row col-lg-12 text-center" id="addIBAN">
-        <div class="row col-md-3 text-center boites"></div>
-        <div class="row col-md-6 text-center boites">
-            <div class="card mx-auto" id="boxIBANborder">
-                <div>
-                    <h3 id="titleIBAN">Chose an existing friend to send cash to</h3>
-                </div>
-                <form th:action="@{/transfer}" th:object="${transferForm}"  method="POST">
-                    <div class="allPadding form-label">
-                        <select name="contactEmail">
-                            <option value="default">Select a friend</option>
-                            <option th:each="link : ${userLinks}" th:value="${link.user2.email}" th:utext="${link.user2.email}"></option>
-                        </select>
-                    </div>
+                <form th:action="@{/addToBank}" th:object="${addCashForm}" method="POST">
                     <div class="form-group">
-                        <label for="montant">Montant personnalisé</label>
-                        <input type="number" name="amount"  class="form-control" id="montant" placeholder="Entrez le montant (5% de frais seront appliqués)">
+                        <label for="montant">Montant à transférer sur votre compte bancaire :</label>
+                        <input type="number" th:field="*{amountAdded}" name="amountAdded" class="form-control" id="montant" placeholder="Entrez le montant à verser">
                     </div>
-                    <div class="understart">
-                        <button type="submit" class="btn-primary" id="btnIBAN">Send cash to friend</button>
-                    </div>
+
+                    <button type="submit" class="btn btn-primary">Valider l'envoi</button>
                 </form>
             </div>
         </div>
-
     </div>
-
-    <br></br>
-
 
     <hr>
     </hr>
@@ -125,6 +91,9 @@
         </div>
     </footer>
 </div>
-</body>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

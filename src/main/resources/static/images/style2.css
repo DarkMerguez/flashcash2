@@ -95,10 +95,11 @@ b {
     transition: 0.33s;
     background-color: #2775e2;
     color: white;
+    text-decoration-color: white;
 }
 
 .cardButton a:hover {
-    text-decoration: none;
+    color: white !important;
 }
 
 .boxborder {

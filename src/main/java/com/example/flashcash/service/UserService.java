@@ -12,6 +12,7 @@ import com.example.flashcash.service.form.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,6 +60,13 @@ public class UserService {
         return accountRepository.save(account);
     }
 
+    public UserAccount cashAddToBank(AddCashForm form) {
+        UserAccount account = sessionService.sessionUser().getAccount();
+        Double amount = sessionService.sessionUser().getAccount().getAmount();
+        account.setAmount(amount - form.getAmountAdded());
+        return accountRepository.save(account);
+    }
+
     public Link userLinks(LinksForm form) {
         Link link = new Link();
         link.setUser1(sessionService.sessionUser());
@@ -66,15 +74,21 @@ public class UserService {
         return linkRepository.save(link);
     }
 
-    public List<String> findLinksEmail() {
+    public List<String> findLinksByUser1Email() {
         return linkRepository.findLinksByUser1Email(sessionService.sessionUser().getEmail()).stream().map(Link::getUser2).map(User::getEmail).collect(Collectors.toList());
     }
 
     public Transfer transfer(TransferForm form) {
             Transfer transfer = new Transfer();
+            transfer.setDate(LocalDateTime.now());
             transfer.setAmountBeforeFee(form.getAmount());
             transfer.setAmountAfterFee(form.getAmount() * 0.95);
             transfer.setFrom(sessionService.sessionUser());
+            transfer.setTo(userRepository.findUserByEmail(form.getContactEmail()).get());
+            UserAccount account = sessionService.sessionUser().getAccount();
+            account.setAmount(account.getAmount() - transfer.getAmountBeforeFee());
+            UserAccount account2 = transfer.getTo().getAccount();
+            account2.setAmount(account2.getAmount() + transfer.getAmountAfterFee());
             return transferRepository.save(transfer);
     }
 }

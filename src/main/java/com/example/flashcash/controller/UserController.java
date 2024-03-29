@@ -5,6 +5,7 @@ import com.example.flashcash.model.Link;
 import com.example.flashcash.model.Transfer;
 import com.example.flashcash.model.User;
 import com.example.flashcash.repository.LinkRepository;
+import com.example.flashcash.repository.TransferRepository;
 import com.example.flashcash.service.SessionService;
 import com.example.flashcash.service.UserService;
 import com.example.flashcash.service.form.*;
@@ -25,10 +26,13 @@ public class UserController {
     private final SessionService sessionService;
     private final LinkRepository linkRepository;
 
-    public UserController(UserService userService, SessionService sessionService, LinkRepository linkRepository) {
+    private final TransferRepository transferRepository;
+
+    public UserController(UserService userService, SessionService sessionService, LinkRepository linkRepository, TransferRepository transferRepository) {
         this.userService = userService;
         this.sessionService = sessionService;
         this.linkRepository = linkRepository;
+        this.transferRepository = transferRepository;
     }
 
     @GetMapping("/signup")
@@ -61,6 +65,19 @@ public class UserController {
         return new ModelAndView("addCash", "addCashForm", new AddCashForm());
     }
 
+    @GetMapping("/addToBank")
+    public ModelAndView addToBank() {
+        return new ModelAndView("addToBank", "addCashForm", new AddCashForm());
+    }
+
+    @PostMapping("/addToBank")
+    public ModelAndView processRequest2(@ModelAttribute("addCashForm") AddCashForm form, Model model ) {
+        userService.cashAddToBank(form);
+        User user = sessionService.sessionUser();
+        model.addAttribute("user", user);
+        return new ModelAndView("index");
+    }
+
     @PostMapping("/addIBAN")
     public ModelAndView processRequest(@ModelAttribute("addIBANForm") AddIBANForm form, Model model) {
         userService.ibansubmit(form);
@@ -84,22 +101,30 @@ public class UserController {
     }
 
     @GetMapping("/transfer")
-    public ModelAndView transfer(Model model, Model model2) {
+    public ModelAndView transfer(Model model, Model model2, Model model3) {
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
         List<Link> userLinks = linkRepository.findLinksByUser1Email(user.getEmail());
         model2.addAttribute("userLinks", userLinks);
+        Transfer transfer = new Transfer();
+        model3.addAttribute("transfer", transfer);
         return new ModelAndView("transfer");
     }
 
     @PostMapping("/transfer")
-    public ModelAndView processRequest(@ModelAttribute("linksForm") LinksForm form, Model model, @ModelAttribute("transferForm") TransferForm form2, Model model2) {
-        userService.userLinks(form);
-        userService.transfer(form2);
+    public ModelAndView processRequest(@ModelAttribute("transferForm") TransferForm form, Model model) {
+        userService.transfer(form);
+        Transfer transfer = new Transfer();
+        model.addAttribute("transfer", transfer);
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
-        Transfer transfer = new Transfer();
-        model2.addAttribute("transfer", transfer);
+        return new ModelAndView("index");
+    }
+    @PostMapping("/add-friend")
+    public ModelAndView processRequest2(@ModelAttribute("linksForm") LinksForm form, Model model) {
+        userService.userLinks(form);
+        User user = sessionService.sessionUser();
+        model.addAttribute("user", user);
         return new ModelAndView("index");
     }
 
