@@ -332,3 +332,21 @@ color: rgb(152, 1, 152);
     width: 25%;
     height: 25%;
 }
+
+.lasttransfers {
+    display: flex;
+    justify-content: center;
+}
+
+#lasttransfers {
+    padding-bottom: 10vh;
+}
+
+.titreVert {
+color: rgb(44, 107, 44);
+}
+
+.titrePadding {
+padding-bottom: 10vh;
+text-decoration: underline;
+}

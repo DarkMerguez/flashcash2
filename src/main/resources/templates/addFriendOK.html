@@ -15,10 +15,10 @@
         <div class="row col-lg-12 text-center">
             <div class="row col-lg-2 text-center">
                 <a href="/"><img src="/images/LogoDarkMerguez.PNG" alt="Mon logo"
-                                     style="max-height: 5rem; width: auto; max-width: 100%;"></a>
+                                 style="max-height: 5rem; width: auto; max-width: 100%;"></a>
             </div>
             <div class="row col-lg-6 text-center"></div>
-            <div class="row col-lg-4 text-center nav">
+            <div class="row col-lg-4 text-center nav2">
                 <ul>
                     <li><a href="/" id="linkHome">Home</a></li>
                     <li><a href="transfer" id="linkTransfer">Transfer</a></li>
@@ -33,59 +33,12 @@
     </header>
 
 
-    <br></br>
-    <div class="row col-lg-12 text-center">
-        <h2>My account balance :</h2>
-    </div>
-
-    <div class="row col-lg-12 text-center paddingtop">
-        <div class="row col-lg-6 text-center"><b>User</b></div>
-        <div class="row col-lg-6 text-center"><b>Amount</b></div>
-    </div>
-    <hr>
-    </hr>
-    <div class="row col-lg-12 text-center paddingtop">
-        <div class="row col-lg-6 text-center variables1" th:text="${user.email}"></div>
-        <div class="row col-lg-6 text-center variables2" th:text="${user.account.amount}"></div>
-    </div>
-    <hr>
-    </hr>
-    <br></br>
-
-    <div class="row col-lg-12 text-center">
-        <h2>My last transfer :</h2>
-    </div>
-
-
-
-    <div class="row col-lg-12 text-center lasttransfers paddingtop">
-        <div class="row col-lg-3 text-center"><b>Date :</b></div>
-        <div class="row col-lg-1"></div>
-        <div class="row col-lg-3 text-center"><b>Transfer to :</b></div>
-        <div class="row col-lg-1"></div>
-        <div class="row col-lg-3 text-center"><b>Amount :</b></div>
-    </div>
+    <h1 class="titreVert">✓ New friend added successfully ! </h1>
+    <br>
+    <h2 class="titrePadding"><a href="/">Back to home</a></h2>
 
     <hr>
     </hr>
-
-    <div class="row col-lg-12 text-center lasttransfers" id="lasttransfers">
-        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.date}"></div>
-        <div class="row col-lg-1"></div>
-        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.to.email}"></div>
-        <div class="row col-lg-1"></div>
-        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.amountBeforeFee}"></div>
-    </div>
-
-    <hr>
-    </hr>
-
-    <div class="row col-lg-12 text-center">
-        <div class="row col-lg-1 text-center">
-            <img src="/images/LogoDarkMerguez.PNG" alt="petit logo"
-                 style="max-height: 2rem; width: auto; max-width: 100%;">
-        </div>
-    </div>
 
     <footer>
         <div class="row col-lg-12 text-center" id="bandeauBas">
@@ -122,5 +75,4 @@
 </div>
 </body>
 
-<script src="script.js"></script>
 </html>

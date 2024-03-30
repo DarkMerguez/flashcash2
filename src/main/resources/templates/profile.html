@@ -114,7 +114,26 @@
     <br></br>
 
     <div class="row col-lg-12 text-center">
-        <h2>My last transfers :</h2>
+        <h2>My last transfer :</h2>
+    </div>
+
+    <div class="row col-lg-12 text-center lasttransfers paddingtop">
+        <div class="row col-lg-3 text-center"><b>Date :</b></div>
+        <div class="row col-lg-1"></div>
+        <div class="row col-lg-3 text-center"><b>Transfer to :</b></div>
+        <div class="row col-lg-1"></div>
+        <div class="row col-lg-3 text-center"><b>Amount :</b></div>
+    </div>
+
+    <hr>
+    </hr>
+
+    <div class="row col-lg-12 text-center lasttransfers" id="lasttransfers">
+        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.date}"></div>
+        <div class="row col-lg-1"></div>
+        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.to.email}"></div>
+        <div class="row col-lg-1"></div>
+        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.amountBeforeFee}"></div>
     </div>
 
     <hr>

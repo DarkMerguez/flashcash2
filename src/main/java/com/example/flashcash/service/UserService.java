@@ -11,7 +11,6 @@ import com.example.flashcash.repository.UserRepository;
 import com.example.flashcash.service.form.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -90,5 +89,9 @@ public class UserService {
             UserAccount account2 = transfer.getTo().getAccount();
             account2.setAmount(account2.getAmount() + transfer.getAmountAfterFee());
             return transferRepository.save(transfer);
+    }
+
+    public List<Transfer> findTransfersByFromId() {
+        return transferRepository.findTransfersByFromId(sessionService.sessionUser().getId()).stream().collect(Collectors.toList());
     }
 }

@@ -44,6 +44,11 @@ public class UserController {
     public ModelAndView home(Model model) {
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
+        List <Transfer> transfers = transferRepository.findTransfersByFromId(user.getId());
+        if (transfers.size() >= 1) {
+        int lastIdx = transfers.size() - 1;
+        Transfer transfer = transfers.get(lastIdx);
+        model.addAttribute(transfer); }
         return new ModelAndView("index");
     }
     @GetMapping("/addIBAN")
@@ -55,6 +60,11 @@ public class UserController {
     public ModelAndView profile(Model model) {
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
+        List <Transfer> transfers = transferRepository.findTransfersByFromId(user.getId());
+        if (transfers.size() >= 1) {
+            int lastIdx = transfers.size() - 1;
+            Transfer transfer = transfers.get(lastIdx);
+            model.addAttribute(transfer); }
         return new ModelAndView("profile");
     }
 
@@ -97,6 +107,11 @@ public class UserController {
         userService.cashAdd(form);
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
+        List <Transfer> transfers = transferRepository.findTransfersByFromId(user.getId());
+        if (transfers.size() >= 1) {
+            int lastIdx = transfers.size() - 1;
+            Transfer transfer = transfers.get(lastIdx);
+            model.addAttribute(transfer); }
         return new ModelAndView("index");
     }
 
@@ -118,14 +133,14 @@ public class UserController {
         model.addAttribute("transfer", transfer);
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
-        return new ModelAndView("index");
+        return new ModelAndView("transferOK");
     }
     @PostMapping("/add-friend")
     public ModelAndView processRequest2(@ModelAttribute("linksForm") LinksForm form, Model model) {
         userService.userLinks(form);
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
-        return new ModelAndView("index");
+        return new ModelAndView("addFriendOK");
     }
 
 
