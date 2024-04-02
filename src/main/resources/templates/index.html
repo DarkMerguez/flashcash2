@@ -46,14 +46,15 @@
     </hr>
     <div class="row col-lg-12 text-center paddingtop">
         <div class="row col-lg-6 text-center variables1" th:text="${user.email}"></div>
-        <div class="row col-lg-6 text-center variables2" th:text="${user.account.amount}"></div>
+        <div class="row col-lg-6 text-center variables2" th:text="${#numbers.formatDecimal(user.account.amount, 0, 'POINT', 2, 'COMMA')} + ' €'"></div>
     </div>
+
     <hr>
     </hr>
     <br></br>
 
     <div class="row col-lg-12 text-center">
-        <h2>My last transfer :</h2>
+        <h2>My last transfers :</h2>
     </div>
 
 
@@ -69,12 +70,28 @@
     <hr>
     </hr>
 
-    <div class="row col-lg-12 text-center lasttransfers" id="lasttransfers">
-        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.date}"></div>
+    <div class="row col-lg-12 text-center lasttransfers" th:if="${lastTransfer}">
+        <div class="row col-lg-3 text-center lasttransfers" th:utext="${#temporals.format(lastTransfer.date, 'dd/MM/yyyy -- HH:mm:ss')}"></div>
         <div class="row col-lg-1"></div>
-        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.to.email}"></div>
+        <div class="row col-lg-3 text-center lasttransfers bleu" th:value="${lastTransfer.to.email}" th:utext="${lastTransfer.to.email}"></div>
         <div class="row col-lg-1"></div>
-        <div class="row col-lg-3 text-center lasttransfers" th:text="${transfer.amountBeforeFee}"></div>
+        <div class="row col-lg-3 text-center lasttransfers vert" th:value="${lastTransfer.amountBeforeFee}" th:utext="${#numbers.formatDecimal(lastTransfer.amountBeforeFee, 0, 'POINT', 2, 'COMMA')} + ' €'"></div>
+    </div>
+
+    <div class="row col-lg-12 text-center lasttransfers" th:if="${secondLastTransfer}">
+        <div class="row col-lg-3 text-center lasttransfers" th:utext="${#temporals.format(secondLastTransfer.date, 'dd/MM/yyyy -- HH:mm:ss')}"></div>
+        <div class="row col-lg-1"></div>
+        <div class="row col-lg-3 text-center lasttransfers bleu" th:value="${secondLastTransfer.to.email}" th:utext="${secondLastTransfer.to.email}"></div>
+        <div class="row col-lg-1"></div>
+        <div class="row col-lg-3 text-center lasttransfers vert" th:value="${secondLastTransfer.amountBeforeFee}" th:utext="${#numbers.formatDecimal(secondLastTransfer.amountBeforeFee, 0, 'POINT', 2, 'COMMA')} + ' €'"></div>
+    </div>
+
+    <div class="row col-lg-12 text-center lasttransfers" id="lasttransfers" th:if="${thirdLastTransfer}">
+        <div class="row col-lg-3 text-center lasttransfers" th:utext="${#temporals.format(thirdLastTransfer.date, 'dd/MM/yyyy -- HH:mm:ss')}"></div>
+        <div class="row col-lg-1"></div>
+        <div class="row col-lg-3 text-center lasttransfers bleu" th:value="${thirdLastTransfer.to.email}" th:utext="${thirdLastTransfer.to.email}"></div>
+        <div class="row col-lg-1"></div>
+        <div class="row col-lg-3 text-center lasttransfers vert" th:value="${thirdLastTransfer.amountBeforeFee}" th:utext="${#numbers.formatDecimal(thirdLastTransfer.amountBeforeFee, 0, 'POINT', 2, 'COMMA')} + ' €'"></div>
     </div>
 
     <hr>

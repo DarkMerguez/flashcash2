@@ -339,7 +339,7 @@ color: rgb(152, 1, 152);
 }
 
 #lasttransfers {
-    padding-bottom: 10vh;
+    padding-bottom: 5vh;
 }
 
 .titreVert {
@@ -349,4 +349,25 @@ color: rgb(44, 107, 44);
 .titrePadding {
 padding-bottom: 10vh;
 text-decoration: underline;
+}
+
+.bleu {
+color: #0c6cf5;
+}
+
+.vert {
+color: rgb(44, 107, 44);
+}
+
+.underline {
+text-decoration: underline;
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% { opacity:0; }
+  50% { opacity:1; }
+  100% { opacity:0; }
 }

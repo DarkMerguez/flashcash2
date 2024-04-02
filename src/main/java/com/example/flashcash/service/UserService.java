@@ -12,6 +12,7 @@ import com.example.flashcash.service.form.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,17 +79,21 @@ public class UserService {
     }
 
     public Transfer transfer(TransferForm form) {
-            Transfer transfer = new Transfer();
+        Transfer transfer = new Transfer();
+        UserAccount account = sessionService.sessionUser().getAccount();
+        if (account.getAmount() >= form.getAmount()) {
             transfer.setDate(LocalDateTime.now());
             transfer.setAmountBeforeFee(form.getAmount());
-            transfer.setAmountAfterFee(form.getAmount() * 0.95);
+            transfer.setAmountAfterFee(form.getAmount() * 0.995);
             transfer.setFrom(sessionService.sessionUser());
             transfer.setTo(userRepository.findUserByEmail(form.getContactEmail()).get());
-            UserAccount account = sessionService.sessionUser().getAccount();
             account.setAmount(account.getAmount() - transfer.getAmountBeforeFee());
             UserAccount account2 = transfer.getTo().getAccount();
             account2.setAmount(account2.getAmount() + transfer.getAmountAfterFee());
             return transferRepository.save(transfer);
+        } else {
+            throw new IllegalArgumentException("Le solde de votre compte est insuffisant pour effectuer ce transfert.");
+        }
     }
 
     public List<Transfer> findTransfersByFromId() {

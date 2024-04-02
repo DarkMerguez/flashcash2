@@ -44,13 +44,24 @@ public class UserController {
     public ModelAndView home(Model model) {
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
-        List <Transfer> transfers = transferRepository.findTransfersByFromId(user.getId());
+        List<Transfer> transfers = transferRepository.findTransfersByFromId(user.getId());
+
         if (transfers.size() >= 1) {
-        int lastIdx = transfers.size() - 1;
-        Transfer transfer = transfers.get(lastIdx);
-        model.addAttribute(transfer); }
+            int lastIdx = transfers.size() - 1;
+            model.addAttribute("lastTransfer", transfers.get(lastIdx));
+        }
+        if (transfers.size() >= 2) {
+            int secondLastIdx = transfers.size() - 2;
+            model.addAttribute("secondLastTransfer", transfers.get(secondLastIdx));
+        }
+        if (transfers.size() >= 3) {
+            int thirdLastIdx = transfers.size() - 3;
+            model.addAttribute("thirdLastTransfer", transfers.get(thirdLastIdx));
+        }
+
         return new ModelAndView("index");
     }
+
     @GetMapping("/addIBAN")
     public ModelAndView addIBAN() {
         return new ModelAndView("addIBAN","addIBANForm", new AddIBANForm());
@@ -63,8 +74,16 @@ public class UserController {
         List <Transfer> transfers = transferRepository.findTransfersByFromId(user.getId());
         if (transfers.size() >= 1) {
             int lastIdx = transfers.size() - 1;
-            Transfer transfer = transfers.get(lastIdx);
-            model.addAttribute(transfer); }
+            model.addAttribute("lastTransfer", transfers.get(lastIdx));
+        }
+        if (transfers.size() >= 2) {
+            int secondLastIdx = transfers.size() - 2;
+            model.addAttribute("secondLastTransfer", transfers.get(secondLastIdx));
+        }
+        if (transfers.size() >= 3) {
+            int thirdLastIdx = transfers.size() - 3;
+            model.addAttribute("thirdLastTransfer", transfers.get(thirdLastIdx));
+        }
         return new ModelAndView("profile");
     }
 
@@ -110,19 +129,27 @@ public class UserController {
         List <Transfer> transfers = transferRepository.findTransfersByFromId(user.getId());
         if (transfers.size() >= 1) {
             int lastIdx = transfers.size() - 1;
-            Transfer transfer = transfers.get(lastIdx);
-            model.addAttribute(transfer); }
+            model.addAttribute("lastTransfer", transfers.get(lastIdx));
+        }
+        if (transfers.size() >= 2) {
+            int secondLastIdx = transfers.size() - 2;
+            model.addAttribute("secondLastTransfer", transfers.get(secondLastIdx));
+        }
+        if (transfers.size() >= 3) {
+            int thirdLastIdx = transfers.size() - 3;
+            model.addAttribute("thirdLastTransfer", transfers.get(thirdLastIdx));
+        }
         return new ModelAndView("index");
     }
 
     @GetMapping("/transfer")
-    public ModelAndView transfer(Model model, Model model2, Model model3) {
+    public ModelAndView transfer(Model model) {
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
         List<Link> userLinks = linkRepository.findLinksByUser1Email(user.getEmail());
-        model2.addAttribute("userLinks", userLinks);
+        model.addAttribute("userLinks", userLinks);
         Transfer transfer = new Transfer();
-        model3.addAttribute("transfer", transfer);
+        model.addAttribute("transfer", transfer);
         return new ModelAndView("transfer");
     }
 
